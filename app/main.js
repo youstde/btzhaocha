@@ -4,8 +4,12 @@ var Clipboard = require('Clipboard');
 
 var Exchange = {
 	init: function () {
-		this.getScoreSum();
 		this.bindEvent();
+		this.getScoreSum();
+	},
+
+	setCookie: function (name, value) {
+		document.cookie = name + "="+ escape (value) + ";path=/"
 	},
 
 	// 提示信息
@@ -60,7 +64,17 @@ var Exchange = {
 
 	// 获取积分
 	getScoreSum: function () {
-		var _this = this;
+		var _this = this,
+				si = this.getQueryString(location.href, 'si'),
+				pvi = this.getQueryString(location.href, 'pvi');
+
+		// 手动写入cookie
+		if (si && pvi) {
+			console.log(si, pvi);
+			this.setCookie('si', si);
+			this.setCookie('pvi', pvi);
+		}
+
 		this.sendAjax({
 			url: '/api/public/lottery/getScoreSum',
 			success: function (data) {
@@ -88,7 +102,13 @@ var Exchange = {
 			}
 		}, options);
 		Zepto.ajax(config);
-	}
+	},
+
+	// get params
+	getQueryString (url, name) {
+    const reg = new RegExp('(^|\\?|&)' + name + '=([^&#]*)(\\s|&|#|$)','i');
+    if(reg.test(url)) return RegExp.$2.replace(/\+/g, ' ');
+  }
 };
 
 Exchange.init();
