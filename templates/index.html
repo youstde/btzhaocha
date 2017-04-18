@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <meta charset="UTF-8">
+  <meta name="format-detection" content="telephone=no,email=no,address=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+<body>
+	<div id="root">
+		<div class="main">
+			<div class="integral">
+				<span class="remain">剩余积分：</span>
+				<div class="result">
+					<div class="effect"></div>
+					<span class="text" id="J_text">-</span>
+				</div>
+			</div>
+			<div class="exchange">
+				<span>兑换: </span>
+				<input type="number" id="J_number" placeholder="请输入兑换积分数" />
+			</div>
+			<div class="confirm">
+				<span class="confirm-btn" id="J_confirmBtn"></span>
+			</div>
+		</div>
+		<div class="space"></div>
+		<div class="rule">
+			<p class="title"><span>兑换规则</span></p>
+			<ul class="list">
+				<li>1. 参与游戏可获得1积分，查看奖品可获得3积分</li>
+				<li>2. 每日最高可获得20积分，每次兑换不少于100积分</li>
+				<li>3. 每100积分可兑换一元，兑换积分可获得兑换码</li>
+				<li>4. 添加活动方微信，凭兑换码领取相应现金红包</li>
+			</ul>
+		</div>
+	</div>
+	<div class="mask" id="J_mask" style="display: none;">
+		<div class="content">
+			<span class="close" id="J_closeBtn"></span>
+			<!-- <div id="qrcode"></div> -->
+			<img class="code-img" id="J_codeImg" src="http://imgcow.oss-cn-hangzhou.aliyuncs.com/game/caicai.png" />
+			<p class="code-text">兑换码：<a id="J_code" href="javascript: void(0);" data-clipboard-text="">-</a></p>
+			<p class="code-tip">加微信，凭兑换码领取现金红包</p>
+		</div>
+	</div>
+</body>
+</html>
