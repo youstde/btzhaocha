@@ -5,6 +5,12 @@
   <meta charset="UTF-8">
   <meta name="format-detection" content="telephone=no,email=no,address=no">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <style>
+  	button {
+  		background: none;
+  		border: none;
+  	}
+  </style>
 </head>
 <body>
 	<div id="root">
@@ -40,7 +46,7 @@
 			<span class="close" id="J_closeBtn"></span>
 			<!-- <div id="qrcode"></div> -->
 			<img class="code-img" id="J_codeImg" src="http://imgcow.oss-cn-hangzhou.aliyuncs.com/game/caicai.png" />
-			<p class="code-text">兑换码：<a id="J_code" href="javascript: void(0);" data-clipboard-text="">-</a></p>
+			<p class="code-text">兑换码：<button id="J_code" data-clipboard-text="">-</button></p>
 			<p class="code-tip">加微信，凭兑换码领取现金红包</p>
 		</div>
 	</div>

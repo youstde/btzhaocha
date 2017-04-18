@@ -2,17 +2,15 @@
 	margin: 0;
   padding: 0;
   line-height: 1;
-}
-*:not(input, textarea){
-	-webkit-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -o-user-select: text;
+  user-select: text;
 }
 ul, li {
 	list-style: none;
 }
-html, body, #root {
+html, body, #root {q
   height: 100%;
 }
 body {
@@ -38,7 +36,11 @@ body {
 	position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	-ms-transform:translate(-50%, -50%); 	/* IE 9 */
+	-moz-transform:translate(-50%, -50%); 	/* Firefox */
+	-webkit-transform:translate(-50%, -50%); /* Safari 和 Chrome */
+	-o-transform:translate(-50%, -50%); 	/* Opera */
 	font-size: 0.56rem;
 	color: #FFF;
 	font-family: "inherit";
@@ -185,9 +187,14 @@ body {
 	color: #ff384c;
 	font-size: 0.36rem;
 }
-.code-text a {
-	text-decoration: none;
+.code-text button {
+	// text-decoration: none;
+	background: none;
+	border: none;
+	outline: none;
 	color: #ff384c;
+	font-size: 0.36rem;
+
 }
 .code-tip {
 	padding-top: 0.34rem;
