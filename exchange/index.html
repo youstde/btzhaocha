@@ -10,9 +10,21 @@
   		background: none;
   		border: none;
   	}
+  	@font-face {font-family: 'webfont';
+		  src: url('//at.alicdn.com/t/dkdo76ajnjr1kyb9.eot'); /* IE9*/
+		  src: url('//at.alicdn.com/t/dkdo76ajnjr1kyb9.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		  url('//at.alicdn.com/t/dkdo76ajnjr1kyb9.woff') format('woff'), /* chrome、firefox */
+		  url('//at.alicdn.com/t/dkdo76ajnjr1kyb9.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+		  url('//at.alicdn.com/t/dkdo76ajnjr1kyb9.svg#NotoSansHans-Black') format('svg'); /* iOS 4.1- */
+		}
+		.test {
+			font-family: "webfont";
+			font-size: 20px;
+		}
   </style>
 </head>
 <body>
+	<div class="test"> 执子之手，将子拖走!子若不走，拍晕了继续拖走!</div>
 	<div id="root">
 		<div class="main">
 			<div class="integral">

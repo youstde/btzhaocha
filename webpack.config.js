@@ -1,4 +1,4 @@
-var path=require('path'),    
+var path=require('path'),
     webpack =require('webpack'),
     ROOT_PATH=path.resolve(__dirname),
     APP_PATH=path.resolve(ROOT_PATH,'app'),
@@ -8,7 +8,7 @@ var path=require('path'),
 
 module.exports={
   entry: {
-    app: path.resolve(APP_PATH, 'index.js'),
+    app: path.resolve(APP_PATH, 'js/index.js'),
     //添加要打包在vendors里面的库
     vendors: ['zepto', 'sweetalert', 'Clipboard']
   },
@@ -61,7 +61,7 @@ module.exports={
         test: /\.css$/,
         loaders: ['style', 'css'],
         /*注意loaders的处理顺序是从右到左的，这里就是先运行css-loader然后是style-loade*/
-        include: APP_PATH
+        include: path.resolve(APP_PATH, 'css')
       },
       {
         test: /\.(png|jpg)$/,
@@ -70,7 +70,7 @@ module.exports={
       {
         test: /\.js$/,
         loader: 'babel',
-        include: APP_PATH,
+        include: path.resolve(APP_PATH, 'js'),
         query: {
           presets: ['es2015']
         }

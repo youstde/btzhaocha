@@ -5,50 +5,84 @@
   <meta charset="UTF-8">
   <meta name="format-detection" content="telephone=no,email=no,address=no">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <style>
-  	button {
-  		background: none;
-  		border: none;
-  	}
-  </style>
+  <script src = '//imgcow.oss-cn-hangzhou.aliyuncs.com/game/Js/template.js'></script>
+  <script type = 'text/html' id = 'gameTemplate'>
+    {{each data as value i}}
+    <ul class = 'gameUl'>
+      {{each value}}
+      <li class = 'gameLi'><img src="../app/imgs/square1.png" alt=""></li>
+      {{/each}}
+    </ul>
+    {{/each}}
+  </script>
+  <!-- 顶部积分 -->
+  <script type='text/html' id = 'floatTitleTemplate'>
+
+  </script>
 </head>
 <body>
-	<div id="root">
-		<div class="main">
-			<div class="integral">
-				<span class="remain">剩余积分：</span>
-				<div class="result">
-					<div class="effect"></div>
-					<span class="text" id="J_text">-</span>
-				</div>
-			</div>
-			<div class="exchange">
-				<span>兑换: </span>
-				<input type="number" id="J_number" placeholder="请输入兑换积分数" />
-			</div>
-			<div class="confirm">
-				<span class="confirm-btn" id="J_confirmBtn"></span>
-			</div>
-		</div>
-		<div class="space"></div>
-		<div class="rule">
-			<p class="title"><span>兑换规则</span></p>
-			<ul class="list">
-				<li>1. 参与游戏可获得1积分，查看奖品可获得3积分</li>
-				<li>2. 每日最高可获得20积分，每次兑换不少于100积分</li>
-				<li>3. 每100积分可兑换一元，兑换积分可获得兑换码</li>
-				<li>4. 添加活动方微信，凭兑换码领取相应现金红包</li>
-			</ul>
-		</div>
-	</div>
-	<div class="mask" id="J_mask" style="display: none;">
-		<div class="content">
-			<span class="close" id="J_closeBtn"></span>
-			<!-- <div id="qrcode"></div> -->
-			<img class="code-img" id="J_codeImg" src="http://imgcow.oss-cn-hangzhou.aliyuncs.com/game/caicai.png" />
-			<p class="code-text">兑换码：<button id="J_code" data-clipboard-text="">-</button></p>
-			<p class="code-tip">加微信，凭兑换码领取现金红包</p>
-		</div>
-	</div>
+  <div class="bgBox">
+    <div class="floatTitle">
+      <div class="floatTitleLeft">
+        奖品：
+      </div>
+      <div class="floatTitleRight">
+        <div class="floatTitleRightCount">积分：</div>
+        兑换
+      </div>
+    </div>
+    <div class="mainGameBox">
+      <div class="wrap" style = 'display:none;'>
+        <div class="back"><h1 id="back">重新开始</h1></div>
+        <div class="content">
+            <div class="top clearfix">
+              <p class="fl">倒计时:<span id="sec">30.00</span>s</p>
+              <p class="fr">第<span id="level">1</span>关</p>
+            </div>
+
+        </div>
+      </div>
+
+      <div class="mid">
+        <div id="oul">
+          <ul class = 'posterUl'>
+            <li id = 'li1'><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+          </ul>
+          <ul class = 'posterUl'>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+          </ul>
+          <ul class = 'posterUl'>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+          </ul>
+          <ul class = 'posterUl'>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+          </ul>
+        </div>
+      </div>
+      <p id="start">开始游戏</p>
+    </div>
+    <div class="gameRule">
+      <div class="gameRuleTitle">
+        <div class = 'gameicon'>?</div>
+        <p>活动规则</p>
+      </div>
+      <div class="rules">
+        <p class ='ruleOne'><span class = 'numicon'>1</span>每参与一次游戏奖励5积分.可在游戏结束后查看累积积分并兑换现金红包.</p>
+        <p class ='ruleTwo'><span class = 'numicon'>2</span>100积分可以兑换现金红包1元.</p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
