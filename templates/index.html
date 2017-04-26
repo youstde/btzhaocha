@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="format-detection" content="telephone=no,email=no,address=no">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <script src='//res.wx.qq.com/open/js/jweixin-1.0.0.js'></script>
   <script src = '//imgcow.oss-cn-hangzhou.aliyuncs.com/game/Js/template.js'></script>
   <script type = 'text/html' id = 'gameTemplate'>
     {{each data as value i}}
@@ -22,13 +23,79 @@
 </head>
 <body>
   <div class="bgBox">
+
+  <div class="outLayer" style = 'display:none'>
+    <div class="outLayerMainBox">
+      <div class="mainBoxTitle">
+        <img src="../app/imgs/outLayerGoods.png" alt="">
+      </div>
+      <!-- swiper -->
+      <div class="outSwiperBox">
+          <div class="swiperBox">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="https://img12.360buyimg.com/cms/s780x260_jfs/t4594/315/3234458838/14621/9a1805c8/58f9e8c4Nf1e5562a.jpg!q90" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://img12.360buyimg.com/cms/s780x260_jfs/t4594/315/3234458838/14621/9a1805c8/58f9e8c4Nf1e5562a.jpg!q90" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://img12.360buyimg.com/cms/s780x260_jfs/t4594/315/3234458838/14621/9a1805c8/58f9e8c4Nf1e5562a.jpg!q90" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://img12.360buyimg.com/cms/s780x260_jfs/t4594/315/3234458838/14621/9a1805c8/58f9e8c4Nf1e5562a.jpg!q90" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://img12.360buyimg.com/cms/s780x260_jfs/t4594/315/3234458838/14621/9a1805c8/58f9e8c4Nf1e5562a.jpg!q90" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
     <div class="floatTitle">
       <div class="floatTitleLeft">
         奖品：
+        <div class = 'topgoodsIcon'>
+          <span class = 'goodsIconNum'>+1</span>
+        </div>
       </div>
       <div class="floatTitleRight">
-        <div class="floatTitleRightCount">积分：</div>
-        兑换
+        <span class="floatTitleRightCount">积分:</span>
+        <span class = 'floatTitleRightAllCount'>6088</span>
+        <span class = 'floatTitleRightWord'>兑换
+            <span class="dayuIcon">
+              <svg t="1493101812788" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2366" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32">
+                <defs><style type="text/css"></style></defs>
+                <path d="M313.616 1008.348l463.113-463.67c8.399-8.4 13.593-20.006 13.593-32.824s-5.195-24.423-13.593-32.824l-464.274-464.831c-8.456-8.758-20.301-14.197-33.417-14.197-25.641 0-46.427 20.786-46.427 46.427 0 13.091 5.419 24.919 14.137 33.359l464.287 464.889v-65.648l-463.113 463.717c-8.731 8.452-14.15 20.279-14.15 33.37 0 25.641 20.786 46.427 46.427 46.427 13.115 0 24.961-5.438 33.404-14.183z" fill="#ffffff" p-id="2367"></path>
+              </svg>
+            </span>
+        </span>
       </div>
     </div>
     <div class="mainGameBox">
@@ -36,13 +103,19 @@
         <div class="back"><h1 id="back">重新开始</h1></div>
         <div class="content">
             <div class="top clearfix">
-              <p class="fl">倒计时:<span id="sec">30.00</span>s</p>
-              <p class="fr">第<span id="level">1</span>关</p>
+              <!-- <p class="fl">倒计时:<span id="sec">30.00</span>s</p> -->
+              <!-- <p class="fr">第<span id="level">1</span>关</p> -->
             </div>
 
         </div>
       </div>
-
+      <div class="secBox">
+        <span id="sec">30.00</span>
+      </div>
+      <div class="guanshuBox">
+        当前关数:
+        <span id="level">0</span>
+      </div>
       <div class="mid">
         <div id="oul">
           <ul class = 'posterUl'>
@@ -86,3 +159,22 @@
   </div>
 </body>
 </html>
+<script>
+    $(document).ready(function () {
+      var mySwiper = new Swiper('.swiper-container',{
+        effect : 'coverflow',
+        slidesPerView: 3,
+        watchSlidesProgress : true,
+        centeredSlides: true,
+        pagination : '.swiper-pagination',
+        coverflow: {
+                    rotate: 30,
+                    stretch: 10,
+                    depth: 60,
+                    modifier: 2,
+                    slideShadows : true
+                }
+        })
+    })
+
+</script>
