@@ -40,8 +40,8 @@ module.exports={
  	],
   devServer: {
     proxy: {
-      "/api": {
-        "target": "http://gamepre.adbaitai.com/",
+      "/mock": {
+        "target": "http://www.easy-mock.com",
         "changeOrigin": true
       }
     },

@@ -94,7 +94,7 @@ let play = {
   	var oImg = alli[ran].children[0];
   	oImg.src = "../app/imgs/square2.png";
   	var This = this;
-  	alli[ran].onclick = function(){
+  	alli[ran].ontouchstart = function(){
   		This.n++;
   		for (var i = 0; i < alli.length; i++) {
   			alli[i].remove();

@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <script src='//res.wx.qq.com/open/js/jweixin-1.0.0.js'></script>
   <script src = '//imgcow.oss-cn-hangzhou.aliyuncs.com/game/Js/template.js'></script>
+  <script src = '../app/js/nativeShare.js'></script>
+  <link rel="stylesheet" href="../app/css/nativeShare.css">
   <script type = 'text/html' id = 'gameTemplate'>
     {{each data as value i}}
     <ul class = 'gameUl'>
@@ -20,11 +22,8 @@
   <script type='text/html' id = 'floatTitleTemplate'>
 
   </script>
-</head>
-<body>
-  <div class="bgBox">
-
-  <div class="outLayer" style = 'display:none'>
+  <!-- 游戏暂停弹窗 -->
+  <script type='text/html' id = 'outLayerFirstTemplate'>
     <div class="outLayerMainBox">
       <div class="mainBoxTitle">
         <img src="../app/imgs/outLayerGoods.png" alt="">
@@ -35,35 +34,35 @@
             <div class="swiper-container">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                  <img src="https://img12.360buyimg.com/cms/s780x260_jfs/t4594/315/3234458838/14621/9a1805c8/58f9e8c4Nf1e5562a.jpg!q90" alt="">
+                  <img src="//img20.360buyimg.com/cms/jfs/t4453/277/1417024996/19771/d42b636b/58de2e8bN58f07745.jpg" alt="">
                   <div class = 'outLayerSwiperLiBottom'>
                     <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
                     <div class= 'SwiperLiBottomRight'>立即使用</div>
                   </div>
                 </div>
                 <div class="swiper-slide">
-                  <img src="https://img12.360buyimg.com/cms/s780x260_jfs/t4594/315/3234458838/14621/9a1805c8/58f9e8c4Nf1e5562a.jpg!q90" alt="">
+                  <img src="//img30.360buyimg.com/cms/jfs/t4600/294/203997321/21807/f3de3fa7/58cb93bbN4b43644b.jpg" alt="">
                   <div class = 'outLayerSwiperLiBottom'>
                     <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
                     <div class= 'SwiperLiBottomRight'>立即使用</div>
                   </div>
                 </div>
                 <div class="swiper-slide">
-                  <img src="https://img12.360buyimg.com/cms/s780x260_jfs/t4594/315/3234458838/14621/9a1805c8/58f9e8c4Nf1e5562a.jpg!q90" alt="">
+                  <img src="//img20.360buyimg.com/cms/jfs/t4516/284/207529119/24057/f22bc14c/58cb93bbN7ddbaec5.jpg" alt="">
                   <div class = 'outLayerSwiperLiBottom'>
                     <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
                     <div class= 'SwiperLiBottomRight'>立即使用</div>
                   </div>
                 </div>
                 <div class="swiper-slide">
-                  <img src="https://img12.360buyimg.com/cms/s780x260_jfs/t4594/315/3234458838/14621/9a1805c8/58f9e8c4Nf1e5562a.jpg!q90" alt="">
+                  <img src="//img11.360buyimg.com/cms/jfs/t4678/267/218830256/17042/ddd73a54/58cb93bbN02c46bd7.jpg" alt="">
                   <div class = 'outLayerSwiperLiBottom'>
                     <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
                     <div class= 'SwiperLiBottomRight'>立即使用</div>
                   </div>
                 </div>
                 <div class="swiper-slide">
-                  <img src="https://img12.360buyimg.com/cms/s780x260_jfs/t4594/315/3234458838/14621/9a1805c8/58f9e8c4Nf1e5562a.jpg!q90" alt="">
+                  <img src="//img10.360buyimg.com/cms/jfs/t4540/285/202603974/14569/4b1bd8e9/58cb93bbNbf9c410b.jpg" alt="">
                   <div class = 'outLayerSwiperLiBottom'>
                     <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
                     <div class= 'SwiperLiBottomRight'>立即使用</div>
@@ -71,13 +70,79 @@
                 </div>
               </div>
               <div class="swiper-pagination"></div>
+            </div>
           </div>
-        </div>
+          <div class = 'contuineBtn'>继续游戏</div>
       </div>
-
     </div>
-  </div>
-
+  </script>
+<!-- 游戏结束弹窗 -->
+  <script type='text/html' id = 'outLayerTwoTemplate'>
+    <div class="outLayerMainBox outLayerGameOver">
+      <div class="mainBoxTitle">
+        <img src="../app/imgs/outLayerGoods.png" alt="">
+      </div>
+      <div class="outLayerAllNum">
+        <p class = 'outLayerAllNumTop'>现金积分+50分</p>
+        <p class = 'outLayerAllNumBottom'>已经打败20%用户啦~继续努力！</p>
+      </div>
+      <!-- swiper -->
+      <div class="outSwiperBox">
+          <div class="swiperBox">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="//img20.360buyimg.com/cms/jfs/t4453/277/1417024996/19771/d42b636b/58de2e8bN58f07745.jpg" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="//img30.360buyimg.com/cms/jfs/t4600/294/203997321/21807/f3de3fa7/58cb93bbN4b43644b.jpg" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="//img20.360buyimg.com/cms/jfs/t4516/284/207529119/24057/f22bc14c/58cb93bbN7ddbaec5.jpg" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="//img11.360buyimg.com/cms/jfs/t4678/267/218830256/17042/ddd73a54/58cb93bbN02c46bd7.jpg" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="//img10.360buyimg.com/cms/jfs/t4540/285/202603974/14569/4b1bd8e9/58cb93bbNbf9c410b.jpg" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+      </div>
+      <div class="bottomBtnBox">
+          <div class="reStart"></div>
+          <div class="shareBtn"></div>
+      </div>
+    </div>
+  </script>
+</head>
+<body>
+  <div class="bgBox">
+<!-- 弹层 -->
+  <div class="outLayer" style = 'display:block'></div>
+<!-- 顶部积分 -->
     <div class="floatTitle">
       <div class="floatTitleLeft">
         奖品：
@@ -157,24 +222,34 @@
       </div>
     </div>
   </div>
+  <div id="nativeShare"></div>
 </body>
 </html>
 <script>
-    $(document).ready(function () {
-      var mySwiper = new Swiper('.swiper-container',{
-        effect : 'coverflow',
-        slidesPerView: 3,
-        watchSlidesProgress : true,
-        centeredSlides: true,
-        pagination : '.swiper-pagination',
-        coverflow: {
-                    rotate: 30,
-                    stretch: 10,
-                    depth: 60,
-                    modifier: 2,
-                    slideShadows : true
-                }
-        })
-    })
-
+    // $(document).ready(function () {
+    //   var mySwiper = new Swiper('.swiper-container',{
+    //     effect : 'coverflow',
+    //     slidesPerView: 3,
+    //     watchSlidesProgress : true,
+    //     centeredSlides: true,
+    //     pagination : '.swiper-pagination',
+    //     coverflow: {
+    //                 rotate: 30,
+    //                 stretch: 10,
+    //                 depth: 60,
+    //                 modifier: 2,
+    //                 slideShadows : true
+    //             }
+    //     })
+    // });
+    // 原生分享功能的配置
+    var config = {
+        url:'http://youstde.github.io',
+        title:'songtao的个人博客',
+        desc:'songtao的个人博客',
+        img:'http://www.wangjunfeng.com/img/face.jpg',
+        img_title:'王俊锋的个人博客',
+        from:'王俊锋的博客'
+    };
+    var share_obj = new nativeShare('nativeShare',config);
 </script>

@@ -54,15 +54,20 @@ let requestObj = {
     this.sendFirst();
   },
   sendFirst () {
-    let url = this.server + this.getLotteryUrl + this.searchStr,
+    // let url = this.server + this.getLotteryUrl + this.searchStr,
+    //     _this = this;
+    let url = '/mock/youstde/example_1493185812146/mock',
         _this = this;
     $.ajax({
       url: url,
-      dataType: 'jsonp',
+      dataType: 'json',
       success (data) {
-        console.log(data.data.ticket);
+        console.log(data);
         let ticket = data.data.ticket;
         _this.weixinConfig(ticket);
+        let obj = template('outLayerFirstTemplate', data);
+        $('.outLayer').html(obj);
+        _this.swiperConfig();
       }
     })
   },
@@ -93,6 +98,24 @@ let requestObj = {
       jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
     });
 
+  },
+  swiperConfig () {
+    var mySwiper = new Swiper('.swiper-container',{
+      effect : 'coverflow',
+      slidesPerView: 3,
+      watchSlidesProgress : true,
+      centeredSlides: true,
+      loop : true,
+      loopAdditionalSlides : 1,
+      pagination : '.swiper-pagination',
+      coverflow: {
+                  rotate: 27,
+                  stretch: 10,
+                  depth: 60,
+                  modifier: 2,
+                  slideShadows : true
+              }
+      });
   }
 }
 

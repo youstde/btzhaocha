@@ -324,12 +324,54 @@ ul li img {
 	-moz-transform:translate(-50%); 	/* Firefox */
 	-webkit-transform:translate(-50%); /* Safari 和 Chrome */
 }
+.contuineBtn {
+	width: 3.2rem;
+	height: 0.8rem;
+	color: #fc5f4e;
+	line-height: 0.8rem;
+	text-align: center;
+	font-size: 0.4rem;
+	font-weight: 700;
+	background: url('../imgs/anniu.png')no-repeat center/100% 100%;
+	position: absolute;
+	bottom: 0;
+	left: 26%;
+}
+.bottomBtnBox {
+	width: 100%;
+	height: 0.84rem;
+	position: absolute;
+	bottom: -1.1rem;
+	left: 0;
+	display: -webkit-flex; /* Safari */
+  display: flex;
+}
+.bottomBtnBox .reStart,
+.bottomBtnBox .shareBtn {
+	flex: 1;
+	height: 100%;
+	line-height: 0.84rem;
+	text-align: center;
+}
+.bottomBtnBox .reStart {
+	margin-right: 0.25rem;
+	background: url('../imgs/reStartBtn.png')no-repeat center/100% 100%;
+}
+.bottomBtnBox .shareBtn {
+	margin-left: 0.32rem;
+	background-color: blue;
+	background: url('../imgs/shareBtn.png')no-repeat center/100% 100%;
+}
 .outSwiperBox {
 	width: 100%;
 	height: 5rem;
 	position: relative;
 
 	overflow: hidden;
+}
+.outLayerMainBox.outLayerGameOver {
+	padding-top: 1.8rem;
+	height: 4.22rem;
 }
 .outLayerMainBox .mainBoxTitle {
 	width: 100%;
@@ -366,8 +408,29 @@ ul li img {
 .outLayerSwiperLiBottom {
 	padding: 0.23rem 0.3rem;
 	margin-bottom: 0.5rem;
+	margin-top: -3px;
 	position: relative;
 	background-color: #fff;
+	border-bottom-right-radius: 9px;
+	border-bottom-left-radius: 9px;
+}
+.outLayerAllNum {
+	width: 100%;
+	position: absolute;
+	top: 0.7rem;
+	left: 0;
+	text-align: center;
+}
+.outLayerAllNum .outLayerAllNumTop {
+	width :100%;
+	color: #fc434c;
+	font-size: 0.35rem;
+	padding-bottom: 0.2rem;
+}
+.outLayerAllNum .outLayerAllNumBottom  {
+	width :100%;
+	color: #8f7e74;
+	font-size: 0.3rem;
 }
  .SwiperLiBottomLeft {
 	 font-size: 0.25rem;
@@ -402,6 +465,8 @@ ul li img {
  .swiper-slide {
 	 width: 5.64rem;
 	 height: 100%;
+	 border-radius: 9px !important;
+	 overflow: hidden;
  }
  .swiper-slide img {
 	 width: 100%;
@@ -421,4 +486,15 @@ ul li img {
  }
  .swiper-container-3d .swiper-slide-shadow-right {
 		 background-image: linear-gradient(90deg,rgba(0,0,0,0),transparent) !important;
+ }
+
+ /*原生分享*/
+ #nativeShare {
+	 width: 100%;
+	 background-color: #fff;
+	 padding-top: 0.2rem;
+	 padding-left: 0.2rem;
+	 position: fixed;
+	 bottom: 0;
+	 left: 0;
  }
