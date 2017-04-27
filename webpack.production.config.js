@@ -8,8 +8,8 @@ var path=require('path'),
 
 module.exports={
   entry: {
-    app: path.resolve(APP_PATH, 'index.js'),
-    vendors: ['zepto', 'sweetalert', 'Clipboard']
+    app: path.resolve(APP_PATH, 'js/index.js'),
+    vendors: ['zepto']
   },
   output:{
     path: BUILD_PATH,
@@ -31,7 +31,7 @@ module.exports={
       filename: 'index.html',
       //chunks这个参数告诉插件要引用entry里面的哪几个入口
       chunks:['app', 'vendors'],
-      //要把script插入标签里 
+      //要把script插入标签里
       inject: 'body'
     })
   ],

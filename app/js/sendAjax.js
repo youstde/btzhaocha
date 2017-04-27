@@ -10,7 +10,7 @@ let requestObj = {
   init () {
     this.getServer();
     this.getLocation();
-    this.sendFirst();
+    // this.sendFirst();
   },
   getServer () {
     let hostName = window.location.hostname;
@@ -64,22 +64,25 @@ let requestObj = {
       url: url,
       dataType: 'json',
       success (data) {
-        _this.setTotleTime(data.data);
         (typeof callback === 'function')?callback(data):'';
         let ticket = data.data.ticket;
         if(data.success === true) _this.data = data.data;
         _this.weixinConfig(ticket);
+        _this.setTotleTime(data.data);
+        _this.setScore(data.data);
       }
     })
   },
   sendGain (callback) {
-    let url = this.server + this.gainUrl + this.searchStr;
+    let url = this.server + this.gainUrl + this.searchStr,
+        _this = this;
     $.ajax({
       url: url,
       dataType: 'jsonp',
       success (data) {
         (typeof callback === 'function')?callback(data):'';
         // console.log(data);
+        _this.setScore( data.data );
       }
     })
   },
@@ -133,12 +136,16 @@ let requestObj = {
   },
   setTotleTime (data) {
     let configObj = data.lottery.stageConfig;
-    if(configObj.isLimtTime){
+    if(configObj.isLimitTime){
       let time = configObj.seconds;
       $('#sec').text(time);
     }else {
       $('#sec').text('不限时');
     }
+  },
+  setScore (data) {
+    let score = data.score;
+    $('#floatTitleRightAllCount').text(score);
   }
 }
 

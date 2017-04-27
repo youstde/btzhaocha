@@ -1,7 +1,13 @@
 require('zepto');
 let requestObj = require('./sendAjax.js');
+let bLevel = {
+    qq: {forbid: 0, lower: 1, higher: 2},
+    uc: {forbid: 0, allow: 1}
+};
+let UA = navigator.appVersion,
+    isqqBrowser = (UA.split("MQQBrowser/").length > 1) ? bLevel.qq.higher : bLevel.qq.forbid,
+    isucBrowser = (UA.split("UCBrowser/").length > 1) ? bLevel.uc.allow : bLevel.uc.forbid;
 let play = {
-
   "oBack" : document.getElementById("back"),
   "back" : document.getElementsByClassName("back")[0], //重新开始
   "oSec" : document.getElementById("sec"), //倒计时
@@ -10,7 +16,7 @@ let play = {
   "oUl" : document.getElementById("oul"),
   "oLi" : document.getElementById("li1"), //每个图案
   "level" : 1,
-  "time" : 15.00,
+  "time" : 0,
   "n" : 1,
   'dataObjArr':[1,1],
   'templateobj': '',
@@ -18,10 +24,18 @@ let play = {
   'gameStart': false,
   'timer': null,
   'isFirstStart': true,
+  'isAgainStart': false,
+  'haveRewardLists': [],
+  'allTime': 0,
   // 初始化
   "init" : function(){
-  	this.start();
-  	this.restart();
+    let _this = this;
+    requestObj.sendFirst((data)=> {
+      _this.time = data.data.lottery.stageConfig.seconds;
+      _this.allTime =  data.data.lottery.stageConfig.seconds;
+      _this.start();
+    });
+  	// this.restart();
   },
   // 开始
   "start" : function(){
@@ -41,7 +55,10 @@ let play = {
           $.each(This.rewardList, (index, item)=> {
             if(item == 1){
               requestObj.sendGain((data)=>{
-                console.log(data);
+                if(data.data) {
+                  This.haveRewardLists.push(data.data);
+                  console.log(This.haveRewardLists);
+                }
                 $('#topgoodsIcon').addClass('showGoodIcon');
                 $('#goodsIconNum').text('+1');
                 setTimeout(()=>{
@@ -56,7 +73,10 @@ let play = {
         // 暂停
         This.gameStart = false;
         $('#start').css('display', 'none');
-        let data = {};
+        let data = {
+          data: This.haveRewardLists
+        };
+        console.log(data);
         let obj = template('outLayerFirstTemplate', data);
         $('#outLayer').html(obj);
         $('#outLayer').css('display', 'block');
@@ -75,18 +95,21 @@ let play = {
   // 重新开始
   "restart" : function(){
   	let This = this;
-  	this.oBack.onclick = function(){
-  		This.oBack.parentNode.style.display = "none";
-  		This.n = 1;
-  		This.level = 1;
-  		This.time = 30.00;
-  		let alli = This.oUl.querySelectorAll("li");
-  		for (let i = 0; i < alli.length; i++) {
-  			alli[i].remove();
-  		}
-  		This.timed();
-  		This.add();
-  	}
+    This.isAgainStart = true;
+    This.n = 1;
+    This.level = 1;
+    This.time = This.allTime;
+    let dataObj = {
+          data: [
+            [1,1],
+            [1,1]
+          ]
+        }
+    let templateobj = template('gameTemplate', dataObj);
+    // play.dataObjArr = [1,1,1];
+    This.templateobj = templateobj;
+    This.timed();
+    This.add();
   },
   // 游戏倒计时
   "timed" : function(isPause){
@@ -98,10 +121,35 @@ let play = {
   			clearInterval(This.timer);
   			setTimeout(()=> {
           // alert('结束了');
-          let outObj = template( 'outLayerTwoTemplate', {data:123} );
-          $('#outLayer').html(outObj);
-          $('#outLayer').css('display','block');
+          let data = {
+            data: This.haveRewardLists
+          };
+          console.log(data);
+          let obj = template('outLayerTwoTemplate', data);
+          $('#outLayer').html(obj);
+          $('#outLayer').css('display', 'block');
           requestObj.swiperConfig();
+          $('#reStart').on('click', ()=> {
+            $('#outLayer').css('display','none');
+            This.restart();
+          });
+          $('#shareBtn').on('click', ()=> {
+            if(isqqBrowser || isucBrowser) {
+              $('#outLayer').css('display','none');
+              $('#nativeShareLayer').css('display','block');
+              $('#nativeShareLayer').on('click', ()=> {
+              	$('#nativeShareLayer').css('display','none');
+                $('#start').text('重新开始');
+                This.gameStart = false;
+                This.level = 1;
+                This.n = 1;
+                This.oLi.remove();
+                This.init();
+              });
+            }else {
+                // 微信原生
+            }
+          });
         }, 100);
   			This.oBack.parentNode.style.display = "block";
   		}
@@ -113,23 +161,29 @@ let play = {
   	this.level++;
     let _this = this;
     // console.log(this.rewardList);
-    $.each(this.rewardList, (index, item)=>{
-      let gameLevel = _this.level -1;
-      console.log(gameLevel)
-      if(gameLevel == item){
-        //发送请求拿奖品
-        requestObj.sendGain((data)=>{
-          let personRewardNum = Number($('#goodsIconNum').text().slice(1));
-          console.log(data);
-          $('#goodsIconNum').text(`+${personRewardNum+1}`);
-          $('#topgoodsIcon').addClass('showGoodIcon');
-          setTimeout(()=>{
-            $('#topgoodsIcon').removeClass('showGoodIcon');
-          },1000);
-          console.log(personRewardNum === 1);
-        });
-      }
-    });
+    if(!this.isAgainStart) {
+      $.each(this.rewardList, (index, item)=>{
+        let gameLevel = _this.level -1;
+        console.log(gameLevel)
+        if(gameLevel == item){
+          //发送请求拿奖品
+          requestObj.sendGain((data)=>{
+            if(data.data) {
+              This.haveRewardLists.push(data.data);
+              console.log(This.haveRewardLists);
+            }
+            let personRewardNum = Number($('#goodsIconNum').text().slice(1));
+            console.log(data);
+            $('#goodsIconNum').text(`+${personRewardNum+1}`);
+            $('#topgoodsIcon').addClass('showGoodIcon');
+            setTimeout(()=>{
+              $('#topgoodsIcon').removeClass('showGoodIcon');
+            },1000);
+            console.log(personRewardNum === 1);
+          });
+        }
+      });
+    }
   	this.oLev.innerHTML = this.n;
     $('#oul').html(this.templateobj);
     let stdataObjArr = this.dataObjArr;
@@ -181,5 +235,5 @@ Zepto(function($){
   let templateobj = template('gameTemplate', dataObj);
   // play.dataObjArr = [1,1,1];
   play.templateobj = templateobj;
-    $('.gameRule').css('display','block');
-})
+  $('.gameRule').css('display','block');
+});

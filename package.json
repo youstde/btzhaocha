@@ -26,7 +26,7 @@
     "zepto": "^1.2.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --hot --inline --host 0.0.0.0",
+    "start": "webpack-dev-server --hot --inline --host 192.168.10.135",
     "build": "webpack --progress --profile --colors --config webpack.production.config.js"
   },
   "author": "",
