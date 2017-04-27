@@ -1,6 +1,8 @@
 require('../css/main.css');
 require('../css/swiper-3.4.2.min.css');
 require('../css/nativeShare.css');
+require('../js/rem.js');
+require('../js/nativeShare.js');
 require('./main.js');
 require('./play.js');
 require('./sendAjax.js');

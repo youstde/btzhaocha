@@ -1,4 +1,5 @@
 require('zepto');
+let btgame = require('./main.js');
 let requestObj = require('./sendAjax.js');
 let bLevel = {
     qq: {forbid: 0, lower: 1, higher: 2},
@@ -6,7 +7,8 @@ let bLevel = {
 };
 let UA = navigator.appVersion,
     isqqBrowser = (UA.split("MQQBrowser/").length > 1) ? bLevel.qq.higher : bLevel.qq.forbid,
-    isucBrowser = (UA.split("UCBrowser/").length > 1) ? bLevel.uc.allow : bLevel.uc.forbid;
+    isucBrowser = (UA.split("UCBrowser/").length > 1) ? bLevel.uc.allow : bLevel.uc.forbid,
+    isWeiXin = btgame.isWeiXin();
 let play = {
   "oBack" : document.getElementById("back"),
   "back" : document.getElementsByClassName("back")[0], //重新开始
@@ -14,7 +16,7 @@ let play = {
   "oLev" : document.getElementById("level"), //关数
   "oSta" : document.getElementById("start"), //开始游戏按钮
   "oUl" : document.getElementById("oul"),
-  "oLi" : document.getElementById("li1"), //每个图案
+  // "oLi" : document.getElementById("li1"), //每个图案
   "level" : 1,
   "time" : 0,
   "n" : 1,
@@ -27,6 +29,7 @@ let play = {
   'isAgainStart': false,
   'haveRewardLists': [],
   'allTime': 0,
+  'allScore': 0,
   // 初始化
   "init" : function(){
     let _this = this;
@@ -47,13 +50,14 @@ let play = {
         This.gameStart = true;
         $('#start').css('display','block');
         $('#start').text('暂停');
-        This.oLi.remove();
+        // This.oLi.remove();
         This.timed();
         if(This.isFirstStart){
           This.add();
           This.rewardList = requestObj.getRewardList();
           $.each(This.rewardList, (index, item)=> {
             if(item == 1){
+              This.allScore += 1;
               requestObj.sendGain((data)=>{
                 if(data.data) {
                   This.haveRewardLists.push(data.data);
@@ -128,26 +132,29 @@ let play = {
           let obj = template('outLayerTwoTemplate', data);
           $('#outLayer').html(obj);
           $('#outLayer').css('display', 'block');
+          $('#outLayerAllNum').text(This.allScore);
           requestObj.swiperConfig();
           $('#reStart').on('click', ()=> {
             $('#outLayer').css('display','none');
             This.restart();
           });
+          btgame.closeGameEndBtn();
           $('#shareBtn').on('click', ()=> {
             if(isqqBrowser || isucBrowser) {
               $('#outLayer').css('display','none');
               $('#nativeShareLayer').css('display','block');
               $('#nativeShareLayer').on('click', ()=> {
               	$('#nativeShareLayer').css('display','none');
-                $('#start').text('重新开始');
-                This.gameStart = false;
-                This.level = 1;
-                This.n = 1;
-                This.oLi.remove();
-                This.init();
+                window.location.reload();
               });
-            }else {
+            }else if(isWeiXin){
                 // 微信原生
+                $('#weixinOutLayer').css('display', 'block');
+                $('#weixinOutLayer').on('click', ()=> {
+                  $('#weixinOutLayer').css('display', 'none');
+                });
+            }else {
+              alert('该浏览器暂不支持分享功能！');
             }
           });
         }, 100);
@@ -167,6 +174,7 @@ let play = {
         console.log(gameLevel)
         if(gameLevel == item){
           //发送请求拿奖品
+          This.allScore += 1;
           requestObj.sendGain((data)=>{
             if(data.data) {
               This.haveRewardLists.push(data.data);
@@ -175,10 +183,14 @@ let play = {
             let personRewardNum = Number($('#goodsIconNum').text().slice(1));
             console.log(data);
             $('#goodsIconNum').text(`+${personRewardNum+1}`);
+            $('#floatHand').css('display','block');
             $('#topgoodsIcon').addClass('showGoodIcon');
             setTimeout(()=>{
               $('#topgoodsIcon').removeClass('showGoodIcon');
             },1000);
+            setTimeout(()=>{
+              $('#floatHand').css('display','none');
+            },2000);
             console.log(personRewardNum === 1);
           });
         }
@@ -205,7 +217,7 @@ let play = {
   	let ran = this.randcolor(this.level*this.level);
   	let alli = this.oUl.querySelectorAll("li");
   	let oImg = alli[ran].children[0];
-  	oImg.src = "../app/imgs/square2.png";
+  	oImg.src = "//static.adbaitai.com/game/Zhaoocha/imgs/square2.png";
   	let This = this;
   	alli[ran].ontouchstart = function(){
   		This.n++;
@@ -225,6 +237,7 @@ let play = {
   }
 }
 Zepto(function($){
+  // 预加载方格中的数据
   play.init();
   let dataObj = {
         data: [
@@ -233,7 +246,32 @@ Zepto(function($){
         ]
       }
   let templateobj = template('gameTemplate', dataObj);
-  // play.dataObjArr = [1,1,1];
   play.templateobj = templateobj;
   $('.gameRule').css('display','block');
+  let postData = {
+    data: [1,1,1,1]
+  }
+  let postTemplateObj = template('gamePostTemplate', postData);
+  $('#oul').html(postTemplateObj);
+  // 点击奖品图标显示弹窗
+  $('#topgoodsIcon').on('click', ()=> {
+    if(play.gameStart){
+      let data = {
+        data: play.haveRewardLists
+      };
+      console.log(data);
+      let obj = template('outLayerFirstTemplate', data);
+      $('#outLayer').html(obj);
+      $('#outLayer').css('display', 'block');
+      requestObj.swiperConfig();
+      play.gameStart = false;
+      clearInterval(play.timer);
+    }
+
+    $('#contuineBtn').on('click', ()=> {
+      $('#outLayer').css('display', 'none');
+      play.timed();
+      play.gameStart = true;
+    });
+  });
 });

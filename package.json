@@ -26,8 +26,9 @@
     "zepto": "^1.2.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --hot --inline --host 192.168.10.135",
-    "build": "webpack --progress --profile --colors --config webpack.production.config.js"
+    "start": "webpack-dev-server --hot --inline --host 192.168.0.103",
+    "build": "webpack --progress --profile --colors --config webpack.production.config.js",
+    "postassets": "scp -r ./exchange root@101.37.77.179:/home/admin/game/zhaocha"
   },
   "author": "",
   "license": "MIT"

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>积分兑换</title>
+  <title>开心大找茬</title>
   <meta charset="UTF-8">
   <meta name="format-detection" content="telephone=no,email=no,address=no">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -18,7 +18,7 @@
     </ul>
     {{/each}}
   </script>
-  <!-- 顶部积分 -->
+  <!-- 游戏封面 -->
   <script type='text/html' id = 'gamePostTemplate'>
     {{each data as value i}}
     <ul class = 'posterUl'>
@@ -42,9 +42,10 @@
               <div class="swiper-wrapper">
               {{each data as value i}}
                 <div class="swiper-slide">
+                  <a href="{{value.lottery.skipUrl}}" id = 'swiperSlideLink'></a>
                   <img src="{{value.lottery.rewardPicUrl}}" alt="">
                   <div class = 'outLayerSwiperLiBottom'>
-                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2017-5-20</span></div>
                     <a href = '{{value.lottery.skipUrl}}' class= 'SwiperLiBottomRight' style='display:block'>{{value.lottery.buttonText}}</a>
                   </div>
                 </div>
@@ -60,11 +61,12 @@
 <!-- 游戏结束弹窗 -->
   <script type='text/html' id = 'outLayerTwoTemplate'>
     <div class="outLayerMainBox outLayerGameOver">
+      <div id="closeGameEndBtn"></div>
       <div class="mainBoxTitle">
         <img src="//static.adbaitai.com/game/Zhaoocha/imgs/outLayerList.png" alt="">
       </div>
       <div class="outLayerAllNum">
-        <p class = 'outLayerAllNumTop'>现金积分+50分</p>
+        <p class = 'outLayerAllNumTop'>现金积分+<span id = 'outLayerAllNum'></span>分</p>
         <p class = 'outLayerAllNumBottom'>已经打败20%用户啦~继续努力！</p>
       </div>
       <!-- swiper -->
@@ -76,8 +78,8 @@
                 <div class="swiper-slide">
                   <img src="{{value.lottery.rewardPicUrl}}" alt="">
                   <div class = 'outLayerSwiperLiBottom'>
-                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
-                    <a href = '{{value.lottery.skipUrl}}' class= 'SwiperLiBottomRight' style='display:block'>{{value.lottery.buttonText}}</a>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2017-5-20</span></div>
+                    <a href = '{{value.lottery.skipUrl}}' class= 'SwiperLiBottomRight' style='display:block'>赚现金&nbsp;+3积分</a>
                   </div>
                 </div>
                 {{/each}}
@@ -97,6 +99,12 @@
   <div class="bgBox">
 <!-- 弹层 -->
   <div class="outLayer" id = 'outLayer' style = 'display:none'></div>
+  <!-- 微信弹窗 -->
+  <div id="weixinOutLayer" style = 'display:none;'>
+    <div class="weixinInnerBox">
+      <img src="//static.adbaitai.com/game/Zhaoocha/imgs/weixintancen.png" alt="">
+    </div>
+  </div>
   <!-- 原生分享 -->
   <div id="nativeShareLayer" style = 'display:none;'>
     <div id="nativeShare"></div>
@@ -107,11 +115,14 @@
         奖品：
         <div class = 'topgoodsIcon' id = 'topgoodsIcon'>
           <span class = 'goodsIconNum' id = 'goodsIconNum'>0</span>
+          <div class="floatHand" id = 'floatHand'>
+            <img src="//static.adbaitai.com/game/Zhaoocha/imgs/hand.png" alt="">
+          </div>
         </div>
       </div>
-      <a class="floatTitleRight" style='display:block;' href = '//game.adbaitai.com/exchange/index.html'>
+      <a class="floatTitleRight" style='display:block;' href = '//gamepre.adbaitai.com/exchange/index.html'>
         <span class="floatTitleRightCount">积分:</span>
-        <span class = 'floatTitleRightAllCount' id = 'floatTitleRightAllCount'>6088</span>
+        <span class = 'floatTitleRightAllCount' id = 'floatTitleRightAllCount'>0</span>
         <span class = 'floatTitleRightWord'>兑换
             <span class="dayuIcon">
               <svg t="1493101812788" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2366" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32">
@@ -158,7 +169,6 @@
       </div>
     </div>
   </div>
-<script src = '//static.adbaitai.com/game/Zhaoocha/Js/swiper-3.4.2.jquery.min.js'></script>
 <script type="text/javascript" src="common.js"></script><script type="text/javascript" src="app.js"></script></body>
 </html>
 <script>

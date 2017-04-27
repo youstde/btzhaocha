@@ -32,31 +32,31 @@
 }
 
 #nativeShare .weibo i {
-    background-image: url('../imgs/icon/weibo.png');
+    background-image: url('//static.adbaitai.com/game/Zhaoocha/imgs/icon/weibo.png');
     background-size: cover;
 }
 
 #nativeShare .weixin i {
-    background-image: url('../imgs/icon/weixin_friend.png');
+    background-image: url('//static.adbaitai.com/game/Zhaoocha/imgs/icon/weixin_friend.png');
     background-size: cover;
 }
 
 #nativeShare .weixin_timeline i {
-    background-image: url('../imgs/icon/weixin.png');
+    background-image: url('//static.adbaitai.com/game/Zhaoocha/imgs/icon/weixin.png');
     background-size: cover;
 }
 
 #nativeShare .qq i {
-    background-image: url('../imgs/icon/qq.png');
+    background-image: url('//static.adbaitai.com/game/Zhaoocha/imgs/icon/qq.png');
     background-size: cover;
 }
 
 #nativeShare .qzone i {
-    background-image: url('../imgs/icon/qqzone.png');
+    background-image: url('//static.adbaitai.com/game/Zhaoocha/imgs/icon/qqzone.png');
     background-size: cover;
 }
 
 #nativeShare .more i {
-    background-image: url('../imgs/icon/more.png');
+    background-image: url('//static.adbaitai.com/game/Zhaoocha/imgs/icon/more.png');
     background-size: cover;
 }

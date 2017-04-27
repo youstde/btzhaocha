@@ -21,7 +21,7 @@ body {
 	width: 100%;
 	height: 16rem;
 	overflow: hidden;
-	background:url('../imgs/bgImg.png')no-repeat center/100% 100%;
+	background:url('//static.adbaitai.com/game/Zhaoocha/imgs/bgImg.png')no-repeat center/100% 100%;
 }
 .floatTitle {
 	width: 100%;
@@ -39,7 +39,7 @@ body {
 .floatTitle .topgoodsIcon {
 	width: 0.9rem;
 	height: 0.9rem;
-	background: url('../imgs/topgoodsIcon.png')no-repeat center/100% 100%;
+	background: url('//static.adbaitai.com/game/Zhaoocha/imgs/topgoodsIcon.png')no-repeat center/100% 100%;
 	position: absolute;
 	top: 0.14rem;
 	right: -0.7rem;
@@ -69,13 +69,41 @@ body {
 	font-weight: 600;
 	position: relative;
 }
+.floatTitleLeft #floatHand {
+	width: 0.5rem;
+	height: 0.5rem;
+	display: none;
+	position: absolute;
+	right: -0.1rem;
+	bottom: -0.1rem;
+	animation: hand 1s infinite;
+	-webkit-animation: hand 1s infinite; /* Safari 和 Chrome */
+}
+#floatHand img {
+	width: 100%;
+	height: 100%;
+}
+@keyframes hand {
+	25% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	75% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
 .floatTitleRight {
 	width: 3.2rem;
 	height: 0.8rem;
 	line-height: 0.8rem;
 	color: #fff;
 	padding-top: 0.05rem;
-	margin-top: 0.15rem;
+	margin-top: 0.13rem;
 	border-radius: 20px;
 	background-color: #985fad;
 	float: right;
@@ -89,7 +117,7 @@ body {
 	font-size: 0.35rem;
 	position: absolute;
   right: 0.6rem;
-  top: 0.2rem;
+  top: 0.24rem;
 }
 .floatTitleRight .floatTitleRightWord .dayuIcon {
 	width: 0.4rem;
@@ -110,7 +138,7 @@ body {
 	height: 10.24rem;
 	margin-top: 2.41rem;
 	position: relative;
-	background:url('../imgs/mainbgImg.png')no-repeat center/100% 100%;
+	background:url('//static.adbaitai.com/game/Zhaoocha/imgs/mainbgImg.png')no-repeat center/100% 100%;
 }
 .mainGameBox .secBox {
 	width: 100%;
@@ -265,7 +293,7 @@ div.mid {
 	/*background-color:#FDC500;*/
 }
 .posterUl li {
-	background: url('../imgs/squareBg.png')no-repeat center/95% 95%;
+	background: url('//static.adbaitai.com/game/Zhaoocha/imgs/squareBg.png')no-repeat center/95% 95%;
 }
 #li1 img {
 	width:100%
@@ -277,7 +305,7 @@ ul li img {
 	width: 3.33rem;
   height: 0.94rem;
 	color: #fc434c;
-	background:url('../imgs/anniu.png')no-repeat center/100% 100%;
+	background:url('//static.adbaitai.com/game/Zhaoocha/imgs/anniu.png')no-repeat center/100% 100%;
 	border-radius:5px;
 	line-height:50px;
 	text-align:center;
@@ -303,7 +331,7 @@ ul li img {
 #oul .gameUl .gameLi {
 	flex: 1;
 	height: 100%;
-	background: url('../imgs/squareBg.png')no-repeat center/95% 95%;
+	background: url('//static.adbaitai.com/game/Zhaoocha/imgs/squareBg.png')no-repeat center/95% 95%;
 }
 .posterUl {
 	 display: flex;
@@ -321,7 +349,7 @@ ul li img {
 	top: 0;
 	left: 0;
 	z-index: 2;
-	background: rgba(0,0,0,0.8);
+	background: rgba(0,0,0,0.83);
 }
 .outLayer .outLayerMainBox {
 	width: 91%;
@@ -345,7 +373,7 @@ ul li img {
 	text-align: center;
 	font-size: 0.4rem;
 	font-weight: 700;
-	background: url('../imgs/anniu.png')no-repeat center/100% 100%;
+	background: url('//static.adbaitai.com/game/Zhaoocha/imgs/anniu.png')no-repeat center/100% 100%;
 	position: absolute;
 	bottom: 0;
 	left: 26%;
@@ -368,12 +396,12 @@ ul li img {
 }
 .bottomBtnBox .reStart {
 	margin-right: 0.25rem;
-	background: url('../imgs/reStartBtn.png')no-repeat center/100% 100%;
+	background: url('//static.adbaitai.com/game/Zhaoocha/imgs/reStartBtn.png')no-repeat center/100% 100%;
 }
 .bottomBtnBox .shareBtn {
 	margin-left: 0.32rem;
 	background-color: blue;
-	background: url('../imgs/shareBtn.png')no-repeat center/100% 100%;
+	background: url('//static.adbaitai.com/game/Zhaoocha/imgs/shareBtn.png')no-repeat center/100% 100%;
 }
 .outSwiperBox {
 	width: 100%;
@@ -392,6 +420,15 @@ ul li img {
 	position: absolute;
 	top: -2.2rem;
 	left: 0;
+}
+#closeGameEndBtn {
+	width: 0.8rem;
+  height: 0.8rem;
+  position: absolute;
+  top: -1.5rem;
+  right: 0rem;
+	z-index: 2;
+	background: url('//static.adbaitai.com/game/Zhaoocha/imgs/closeBtn.png')no-repeat center/100% 100%;
 }
 .mainBoxTitle img {
 	width: 100%;
@@ -420,7 +457,7 @@ ul li img {
 }
 .outLayerSwiperLiBottom {
 	padding: 0.23rem 0.3rem;
-	margin-bottom: 0.5rem;
+	margin-bottom: 0.6rem;
 	margin-top: -3px;
 	position: relative;
 	background-color: #fff;
@@ -481,6 +518,13 @@ ul li img {
 	 border-radius: 9px !important;
 	 overflow: hidden;
  }
+ #swiperSlideLink {
+	 width: 100%;
+	 height: 2.92rem;
+	 position: absolute;
+	 top: 0;
+	 left:0;
+ }
  .swiper-slide img {
 	 width: 100%;
 	 height: 2.92rem;
@@ -500,7 +544,12 @@ ul li img {
  .swiper-container-3d .swiper-slide-shadow-right {
 		 background-image: linear-gradient(90deg,rgba(0,0,0,0),transparent) !important;
  }
-
+.swiper-pagination-bullet-active {
+	background: #fc5259 !important;
+}
+.swiper-pagination-bullet {
+	background: #fdafa5 !important;
+}
  /*原生分享*/
  #nativeShare {
 	 width: 100%;
@@ -511,3 +560,20 @@ ul li img {
 	 bottom: 0;
 	 left: 0;
  }
+ /*微信弹窗*/
+ #weixinOutLayer {
+	 width: 100%;
+	 height: 100%;
+	 background: rgba(0,0,0,0.83);
+	 position: fixed;
+	 top: 0;
+	 z-index: 5;
+ }
+ .weixinInnerBox {
+	 width: 100%;
+	 height: auto;
+ }
+#weixinOutLayer img {
+	width: 100%;
+	height: 100%;
+}

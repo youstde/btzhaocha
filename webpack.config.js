@@ -31,7 +31,7 @@ module.exports={
     new webpack.optimize.CommonsChunkPlugin('vendors', 'common.js'),
     /*所以新建一个专门放模版的文件夹templates,在里面加两个模版文件index.html 和 mobile.html*/
     new HtmlWebpackPlugin({
-      title: '积分兑换',
+      title: '',
       template: path.resolve(TEM_PATH, 'index.html'),
       filename: 'index.html',
       //chunks这个参数告诉插件要引用entry里面的哪几个入口
@@ -42,10 +42,10 @@ module.exports={
  	],
   devServer: {
     proxy: {
-      "/mock": {
-        "target": "http://www.easy-mock.com",
-        "changeOrigin": true
-      }
+      // "/mock": {
+      //   "target": "http://www.easy-mock.com",
+      //   "changeOrigin": true
+      // }
     },
     // host: '192.168.10.235',
     // historyApiFallback: true,
