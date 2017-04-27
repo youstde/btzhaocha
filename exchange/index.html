@@ -5,69 +5,50 @@
   <meta charset="UTF-8">
   <meta name="format-detection" content="telephone=no,email=no,address=no">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <script src = '../app/js/rem.js'></script>
+  <!-- <script src = '../app/js/rem.js'></script> -->
   <script src='//res.wx.qq.com/open/js/jweixin-1.0.0.js'></script>
   <script src = '//static.adbaitai.com/game/Js/template.js'></script>
-  <script src = '../app/js/nativeShare.js'></script>
+  <script src = '//static.adbaitai.com/game/Zhaoocha/Js/nativeShare.js'></script>
   <script type = 'text/html' id = 'gameTemplate'>
     {{each data as value i}}
     <ul class = 'gameUl'>
       {{each value}}
-      <li class = 'gameLi'><img src="../app/imgs/square1.png" alt=""></li>
+      <li class = 'gameLi'><img src="//static.adbaitai.com/game/Zhaoocha/imgs/square1.png" alt=""></li>
       {{/each}}
     </ul>
     {{/each}}
   </script>
   <!-- 顶部积分 -->
-  <script type='text/html' id = 'floatTitleTemplate'>
-
+  <script type='text/html' id = 'gamePostTemplate'>
+    {{each data as value i}}
+    <ul class = 'posterUl'>
+      <li><img src="//static.adbaitai.com/game/Zhaoocha/imgs/square1.png" alt=""></li>
+      <li><img src="//static.adbaitai.com/game/Zhaoocha/imgs/square1.png" alt=""></li>
+      <li><img src="//static.adbaitai.com/game/Zhaoocha/imgs/square1.png" alt=""></li>
+      <li><img src="//static.adbaitai.com/game/Zhaoocha/imgs/square1.png" alt=""></li>
+    </ul>
+    {{/each}}
   </script>
   <!-- 游戏暂停弹窗 -->
   <script type='text/html' id = 'outLayerFirstTemplate'>
     <div class="outLayerMainBox">
       <div class="mainBoxTitle">
-        <img src="../app/imgs/outLayerGoods.png" alt="">
+        <img src="//static.adbaitai.com/game/Zhaoocha/imgs/outLayerGoods.png" alt="">
       </div>
       <!-- swiper -->
       <div class="outSwiperBox">
           <div class="swiperBox">
             <div class="swiper-container">
               <div class="swiper-wrapper">
+              {{each data as value i}}
                 <div class="swiper-slide">
-                  <img src="//img20.360buyimg.com/cms/jfs/t4453/277/1417024996/19771/d42b636b/58de2e8bN58f07745.jpg" alt="">
+                  <img src="{{value.lottery.rewardPicUrl}}" alt="">
                   <div class = 'outLayerSwiperLiBottom'>
                     <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
-                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                    <a href = '{{value.lottery.skipUrl}}' class= 'SwiperLiBottomRight' style='display:block'>{{value.lottery.buttonText}}</a>
                   </div>
                 </div>
-                <div class="swiper-slide">
-                  <img src="//img30.360buyimg.com/cms/jfs/t4600/294/203997321/21807/f3de3fa7/58cb93bbN4b43644b.jpg" alt="">
-                  <div class = 'outLayerSwiperLiBottom'>
-                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
-                    <div class= 'SwiperLiBottomRight'>立即使用</div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <img src="//img20.360buyimg.com/cms/jfs/t4516/284/207529119/24057/f22bc14c/58cb93bbN7ddbaec5.jpg" alt="">
-                  <div class = 'outLayerSwiperLiBottom'>
-                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
-                    <div class= 'SwiperLiBottomRight'>立即使用</div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <img src="//img11.360buyimg.com/cms/jfs/t4678/267/218830256/17042/ddd73a54/58cb93bbN02c46bd7.jpg" alt="">
-                  <div class = 'outLayerSwiperLiBottom'>
-                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
-                    <div class= 'SwiperLiBottomRight'>立即使用</div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <img src="//img10.360buyimg.com/cms/jfs/t4540/285/202603974/14569/4b1bd8e9/58cb93bbNbf9c410b.jpg" alt="">
-                  <div class = 'outLayerSwiperLiBottom'>
-                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
-                    <div class= 'SwiperLiBottomRight'>立即使用</div>
-                  </div>
-                </div>
+                {{/each}}
               </div>
               <div class="swiper-pagination"></div>
             </div>
@@ -80,7 +61,7 @@
   <script type='text/html' id = 'outLayerTwoTemplate'>
     <div class="outLayerMainBox outLayerGameOver">
       <div class="mainBoxTitle">
-        <img src="../app/imgs/outLayerGoods.png" alt="">
+        <img src="//static.adbaitai.com/game/Zhaoocha/imgs/outLayerList.png" alt="">
       </div>
       <div class="outLayerAllNum">
         <p class = 'outLayerAllNumTop'>现金积分+50分</p>
@@ -91,41 +72,15 @@
           <div class="swiperBox">
             <div class="swiper-container">
               <div class="swiper-wrapper">
+                {{each data as value i}}
                 <div class="swiper-slide">
-                  <img src="//img20.360buyimg.com/cms/jfs/t4453/277/1417024996/19771/d42b636b/58de2e8bN58f07745.jpg" alt="">
+                  <img src="{{value.lottery.rewardPicUrl}}" alt="">
                   <div class = 'outLayerSwiperLiBottom'>
                     <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
-                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                    <a href = '{{value.lottery.skipUrl}}' class= 'SwiperLiBottomRight' style='display:block'>{{value.lottery.buttonText}}</a>
                   </div>
                 </div>
-                <div class="swiper-slide">
-                  <img src="//img30.360buyimg.com/cms/jfs/t4600/294/203997321/21807/f3de3fa7/58cb93bbN4b43644b.jpg" alt="">
-                  <div class = 'outLayerSwiperLiBottom'>
-                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
-                    <div class= 'SwiperLiBottomRight'>立即使用</div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <img src="//img20.360buyimg.com/cms/jfs/t4516/284/207529119/24057/f22bc14c/58cb93bbN7ddbaec5.jpg" alt="">
-                  <div class = 'outLayerSwiperLiBottom'>
-                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
-                    <div class= 'SwiperLiBottomRight'>立即使用</div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <img src="//img11.360buyimg.com/cms/jfs/t4678/267/218830256/17042/ddd73a54/58cb93bbN02c46bd7.jpg" alt="">
-                  <div class = 'outLayerSwiperLiBottom'>
-                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
-                    <div class= 'SwiperLiBottomRight'>立即使用</div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <img src="//img10.360buyimg.com/cms/jfs/t4540/285/202603974/14569/4b1bd8e9/58cb93bbNbf9c410b.jpg" alt="">
-                  <div class = 'outLayerSwiperLiBottom'>
-                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
-                    <div class= 'SwiperLiBottomRight'>立即使用</div>
-                  </div>
-                </div>
+                {{/each}}
               </div>
               <div class="swiper-pagination"></div>
             </div>
@@ -137,11 +92,15 @@
       </div>
     </div>
   </script>
-</head>
+<link href="styles.css" rel="stylesheet"></head>
 <body>
   <div class="bgBox">
 <!-- 弹层 -->
   <div class="outLayer" id = 'outLayer' style = 'display:none'></div>
+  <!-- 原生分享 -->
+  <div id="nativeShareLayer" style = 'display:none;'>
+    <div id="nativeShare"></div>
+  </div>
 <!-- 顶部积分 -->
     <div class="floatTitle">
       <div class="floatTitleLeft">
@@ -150,9 +109,9 @@
           <span class = 'goodsIconNum' id = 'goodsIconNum'>0</span>
         </div>
       </div>
-      <div class="floatTitleRight">
+      <a class="floatTitleRight" style='display:block;' href = '//game.adbaitai.com/exchange/index.html'>
         <span class="floatTitleRightCount">积分:</span>
-        <span class = 'floatTitleRightAllCount'>6088</span>
+        <span class = 'floatTitleRightAllCount' id = 'floatTitleRightAllCount'>6088</span>
         <span class = 'floatTitleRightWord'>兑换
             <span class="dayuIcon">
               <svg t="1493101812788" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2366" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32">
@@ -161,7 +120,7 @@
               </svg>
             </span>
         </span>
-      </div>
+      </a>
     </div>
     <div class="mainGameBox">
       <div class="wrap" style = 'display:none;'>
@@ -183,30 +142,7 @@
       </div>
       <div class="mid">
         <div id="oul">
-          <ul class = 'posterUl'>
-            <li id = 'li1'><img src="../app/imgs/square1.png" alt=""></li>
-            <li><img src="../app/imgs/square1.png" alt=""></li>
-            <li><img src="../app/imgs/square1.png" alt=""></li>
-            <li><img src="../app/imgs/square1.png" alt=""></li>
-          </ul>
-          <ul class = 'posterUl'>
-            <li><img src="../app/imgs/square1.png" alt=""></li>
-            <li><img src="../app/imgs/square1.png" alt=""></li>
-            <li><img src="../app/imgs/square1.png" alt=""></li>
-            <li><img src="../app/imgs/square1.png" alt=""></li>
-          </ul>
-          <ul class = 'posterUl'>
-            <li><img src="../app/imgs/square1.png" alt=""></li>
-            <li><img src="../app/imgs/square1.png" alt=""></li>
-            <li><img src="../app/imgs/square1.png" alt=""></li>
-            <li><img src="../app/imgs/square1.png" alt=""></li>
-          </ul>
-          <ul class = 'posterUl'>
-            <li><img src="../app/imgs/square1.png" alt=""></li>
-            <li><img src="../app/imgs/square1.png" alt=""></li>
-            <li><img src="../app/imgs/square1.png" alt=""></li>
-            <li><img src="../app/imgs/square1.png" alt=""></li>
-          </ul>
+
         </div>
       </div>
       <p id="start">开始游戏</p>
@@ -222,7 +158,7 @@
       </div>
     </div>
   </div>
-  <div id="nativeShare"></div>
+<script src = '//static.adbaitai.com/game/Zhaoocha/Js/swiper-3.4.2.jquery.min.js'></script>
 <script type="text/javascript" src="common.js"></script><script type="text/javascript" src="app.js"></script></body>
 </html>
 <script>
