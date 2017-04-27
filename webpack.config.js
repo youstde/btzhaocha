@@ -4,13 +4,14 @@ var path=require('path'),
     APP_PATH=path.resolve(ROOT_PATH,'app'),
     BUILD_PATH=path.resolve(ROOT_PATH,'build'),
     TEM_PATH = path.resolve(ROOT_PATH, 'templates'),
-    HtmlWebpackPlugin=require('html-webpack-plugin');
+    HtmlWebpackPlugin=require('html-webpack-plugin'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports={
   entry: {
     app: path.resolve(APP_PATH, 'js/index.js'),
     //添加要打包在vendors里面的库
-    vendors: ['zepto', 'sweetalert', 'Clipboard']
+    vendors: ['zepto']
   },
  	output:{
  		path: BUILD_PATH,
@@ -25,6 +26,7 @@ module.exports={
         warnings: false
       }
     }),
+     new ExtractTextPlugin("styles.css"),
     //把入口文件里面的数组打包成verdors.js
     new webpack.optimize.CommonsChunkPlugin('vendors', 'common.js'),
     /*所以新建一个专门放模版的文件夹templates,在里面加两个模版文件index.html 和 mobile.html*/
@@ -59,7 +61,7 @@ module.exports={
       },
       {
         test: /\.css$/,
-        loaders: ['style', 'css'],
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader"),
         /*注意loaders的处理顺序是从右到左的，这里就是先运行css-loader然后是style-loade*/
         include: path.resolve(APP_PATH, 'css')
       },

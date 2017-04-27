@@ -19,6 +19,7 @@
   "devDependencies": {
     "clipboard": "^1.6.1",
     "exports-loader": "^0.6.4",
+    "extract-text-webpack-plugin": "^1.0.1",
     "js.cookie": "^0.0.4",
     "script-loader": "^0.7.0",
     "sweetalert": "^1.1.3",

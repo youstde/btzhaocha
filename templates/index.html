@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <meta name="format-detection" content="telephone=no,email=no,address=no">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <script src = '../app/js/rem.js'></script>
   <script src='//res.wx.qq.com/open/js/jweixin-1.0.0.js'></script>
-  <script src = '//imgcow.oss-cn-hangzhou.aliyuncs.com/game/Js/template.js'></script>
+  <script src = '//static.adbaitai.com/game/Js/template.js'></script>
   <script src = '../app/js/nativeShare.js'></script>
-  <link rel="stylesheet" href="../app/css/nativeShare.css">
   <script type = 'text/html' id = 'gameTemplate'>
     {{each data as value i}}
     <ul class = 'gameUl'>
@@ -72,7 +72,7 @@
               <div class="swiper-pagination"></div>
             </div>
           </div>
-          <div class = 'contuineBtn'>继续游戏</div>
+          <div class = 'contuineBtn' id = 'contuineBtn'>继续游戏</div>
       </div>
     </div>
   </script>
@@ -132,8 +132,8 @@
           </div>
       </div>
       <div class="bottomBtnBox">
-          <div class="reStart"></div>
-          <div class="shareBtn"></div>
+          <div class="reStart" id ='reStart'></div>
+          <div class="shareBtn" id = 'shareBtn'></div>
       </div>
     </div>
   </script>
@@ -141,13 +141,13 @@
 <body>
   <div class="bgBox">
 <!-- 弹层 -->
-  <div class="outLayer" style = 'display:block'></div>
+  <div class="outLayer" id = 'outLayer' style = 'display:none'></div>
 <!-- 顶部积分 -->
     <div class="floatTitle">
       <div class="floatTitleLeft">
         奖品：
-        <div class = 'topgoodsIcon'>
-          <span class = 'goodsIconNum'>+1</span>
+        <div class = 'topgoodsIcon' id = 'topgoodsIcon'>
+          <span class = 'goodsIconNum' id = 'goodsIconNum'>0</span>
         </div>
       </div>
       <div class="floatTitleRight">
@@ -175,7 +175,7 @@
         </div>
       </div>
       <div class="secBox">
-        <span id="sec">30.00</span>
+        <span id="sec"></span>
       </div>
       <div class="guanshuBox">
         当前关数:

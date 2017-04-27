@@ -6,9 +6,11 @@ let requestObj = {
   'gainUrl': '/api/1.0/h5/lottery/gain',
   'locationObj': {},
   'searchStr': '',
+  'data': null,
   init () {
     this.getServer();
     this.getLocation();
+    this.sendFirst();
   },
   getServer () {
     let hostName = window.location.hostname;
@@ -51,9 +53,9 @@ let requestObj = {
     }
     console.log(searchStr);
     this.searchStr = searchStr;
-    this.sendFirst();
+    return searchStr;
   },
-  sendFirst () {
+  sendFirst (callback) {
     // let url = this.server + this.getLotteryUrl + this.searchStr,
     //     _this = this;
     let url = '/mock/youstde/example_1493185812146/mock',
@@ -62,22 +64,22 @@ let requestObj = {
       url: url,
       dataType: 'json',
       success (data) {
-        console.log(data);
+        _this.setTotleTime(data.data);
+        (typeof callback === 'function')?callback(data):'';
         let ticket = data.data.ticket;
+        if(data.success === true) _this.data = data.data;
         _this.weixinConfig(ticket);
-        let obj = template('outLayerFirstTemplate', data);
-        $('.outLayer').html(obj);
-        _this.swiperConfig();
       }
     })
   },
-  sendGain () {
+  sendGain (callback) {
     let url = this.server + this.gainUrl + this.searchStr;
     $.ajax({
       url: url,
       dataType: 'jsonp',
       success (data) {
-        console.log(data);
+        (typeof callback === 'function')?callback(data):'';
+        // console.log(data);
       }
     })
   },
@@ -116,7 +118,29 @@ let requestObj = {
                   slideShadows : true
               }
       });
+  },
+  getData () {
+    // 获取页面初始化时请求的数据
+    if(this.data) {
+      return this.data;
+    }
+  },
+  getRewardList () {
+    // 有奖品的关卡列表
+    if(this.data) {
+      return this.data.lottery.stageConfig.stageList;
+    }
+  },
+  setTotleTime (data) {
+    let configObj = data.lottery.stageConfig;
+    if(configObj.isLimtTime){
+      let time = configObj.seconds;
+      $('#sec').text(time);
+    }else {
+      $('#sec').text('不限时');
+    }
   }
 }
 
 requestObj.init();
+module.exports = requestObj;

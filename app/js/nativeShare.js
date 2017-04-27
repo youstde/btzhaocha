@@ -153,7 +153,7 @@ var nativeShare = function (elementNode, config) {
         if (isqqBrowser || isucBrowser) {
             this.html();
         } else {
-            document.write('目前该分享插件仅支持手机UC浏览器和QQ浏览器');
+            console.log('目前该分享插件仅支持手机UC浏览器和QQ浏览器');
         }
     };
 

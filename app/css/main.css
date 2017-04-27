@@ -40,7 +40,9 @@ body {
 	position: absolute;
 	top: 0.14rem;
 	right: -0.7rem;
+	transition: all 1s;
 }
+
 .topgoodsIcon .goodsIconNum {
 	width: 0.6rem;
 	height: 0.3rem;
@@ -52,6 +54,9 @@ body {
 	position: absolute;
 	top: 0;
 	right: -0.31rem;
+}
+.showGoodIcon .goodsIconNum {
+		font-size: 0.5rem;
 }
 .floatTitleLeft {
 	float: left;
@@ -265,13 +270,14 @@ ul li img {
 #start {
 	width: 3.33rem;
   height: 0.94rem;
+	color: #fc434c;
 	background:url('../imgs/anniu.png')no-repeat center/100% 100%;
 	border-radius:5px;
 	line-height:50px;
 	text-align:center;
 	cursor:pointer;
-	color:#fff;
-	font-size:20px;
+	font-size:0.4rem;
+	font-weight: 700;
 	position: absolute;
 	bottom: 1.1rem;
   left: 2.05rem;

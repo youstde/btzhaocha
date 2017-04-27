@@ -5,62 +5,251 @@
   <meta charset="UTF-8">
   <meta name="format-detection" content="telephone=no,email=no,address=no">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <style>
-  	button {
-  		background: none;
-  		border: none;
-  	}
-  	@font-face {font-family: 'webfont';
-		  src: url('//at.alicdn.com/t/dkdo76ajnjr1kyb9.eot'); /* IE9*/
-		  src: url('//at.alicdn.com/t/dkdo76ajnjr1kyb9.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-		  url('//at.alicdn.com/t/dkdo76ajnjr1kyb9.woff') format('woff'), /* chrome、firefox */
-		  url('//at.alicdn.com/t/dkdo76ajnjr1kyb9.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-		  url('//at.alicdn.com/t/dkdo76ajnjr1kyb9.svg#NotoSansHans-Black') format('svg'); /* iOS 4.1- */
-		}
-		.test {
-			font-family: "webfont";
-			font-size: 20px;
-		}
-  </style>
+  <script src = '../app/js/rem.js'></script>
+  <script src='//res.wx.qq.com/open/js/jweixin-1.0.0.js'></script>
+  <script src = '//static.adbaitai.com/game/Js/template.js'></script>
+  <script src = '../app/js/nativeShare.js'></script>
+  <script type = 'text/html' id = 'gameTemplate'>
+    {{each data as value i}}
+    <ul class = 'gameUl'>
+      {{each value}}
+      <li class = 'gameLi'><img src="../app/imgs/square1.png" alt=""></li>
+      {{/each}}
+    </ul>
+    {{/each}}
+  </script>
+  <!-- 顶部积分 -->
+  <script type='text/html' id = 'floatTitleTemplate'>
+
+  </script>
+  <!-- 游戏暂停弹窗 -->
+  <script type='text/html' id = 'outLayerFirstTemplate'>
+    <div class="outLayerMainBox">
+      <div class="mainBoxTitle">
+        <img src="../app/imgs/outLayerGoods.png" alt="">
+      </div>
+      <!-- swiper -->
+      <div class="outSwiperBox">
+          <div class="swiperBox">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="//img20.360buyimg.com/cms/jfs/t4453/277/1417024996/19771/d42b636b/58de2e8bN58f07745.jpg" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="//img30.360buyimg.com/cms/jfs/t4600/294/203997321/21807/f3de3fa7/58cb93bbN4b43644b.jpg" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="//img20.360buyimg.com/cms/jfs/t4516/284/207529119/24057/f22bc14c/58cb93bbN7ddbaec5.jpg" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="//img11.360buyimg.com/cms/jfs/t4678/267/218830256/17042/ddd73a54/58cb93bbN02c46bd7.jpg" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="//img10.360buyimg.com/cms/jfs/t4540/285/202603974/14569/4b1bd8e9/58cb93bbNbf9c410b.jpg" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          <div class = 'contuineBtn' id = 'contuineBtn'>继续游戏</div>
+      </div>
+    </div>
+  </script>
+<!-- 游戏结束弹窗 -->
+  <script type='text/html' id = 'outLayerTwoTemplate'>
+    <div class="outLayerMainBox outLayerGameOver">
+      <div class="mainBoxTitle">
+        <img src="../app/imgs/outLayerGoods.png" alt="">
+      </div>
+      <div class="outLayerAllNum">
+        <p class = 'outLayerAllNumTop'>现金积分+50分</p>
+        <p class = 'outLayerAllNumBottom'>已经打败20%用户啦~继续努力！</p>
+      </div>
+      <!-- swiper -->
+      <div class="outSwiperBox">
+          <div class="swiperBox">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="//img20.360buyimg.com/cms/jfs/t4453/277/1417024996/19771/d42b636b/58de2e8bN58f07745.jpg" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="//img30.360buyimg.com/cms/jfs/t4600/294/203997321/21807/f3de3fa7/58cb93bbN4b43644b.jpg" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="//img20.360buyimg.com/cms/jfs/t4516/284/207529119/24057/f22bc14c/58cb93bbN7ddbaec5.jpg" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="//img11.360buyimg.com/cms/jfs/t4678/267/218830256/17042/ddd73a54/58cb93bbN02c46bd7.jpg" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="//img10.360buyimg.com/cms/jfs/t4540/285/202603974/14569/4b1bd8e9/58cb93bbNbf9c410b.jpg" alt="">
+                  <div class = 'outLayerSwiperLiBottom'>
+                    <div class="SwiperLiBottomLeft">有效期:<span class = 'bottomLeftDate'>2018-10-23</span></div>
+                    <div class= 'SwiperLiBottomRight'>立即使用</div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+      </div>
+      <div class="bottomBtnBox">
+          <div class="reStart"></div>
+          <div class="shareBtn"></div>
+      </div>
+    </div>
+  </script>
 </head>
 <body>
-	<div class="test"> 执子之手，将子拖走!子若不走，拍晕了继续拖走!</div>
-	<div id="root">
-		<div class="main">
-			<div class="integral">
-				<span class="remain">剩余积分：</span>
-				<div class="result">
-					<div class="effect"></div>
-					<span class="text" id="J_text">-</span>
-				</div>
-			</div>
-			<div class="exchange">
-				<span>兑换: </span>
-				<input type="number" id="J_number" placeholder="请输入兑换积分数" />
-			</div>
-			<div class="confirm">
-				<span class="confirm-btn" id="J_confirmBtn"></span>
-			</div>
-		</div>
-		<div class="space"></div>
-		<div class="rule">
-			<p class="title"><span>兑换规则</span></p>
-			<ul class="list">
-				<li>1. 参与游戏可获得1积分，查看奖品可获得3积分</li>
-				<li>2. 每日最高可获得20积分，每次兑换不少于100积分</li>
-				<li>3. 每100积分可兑换一元，兑换积分可获得兑换码</li>
-				<li>4. 添加活动方微信，凭兑换码领取相应现金红包</li>
-			</ul>
-		</div>
-	</div>
-	<div class="mask" id="J_mask" style="display: none;">
-		<div class="content">
-			<span class="close" id="J_closeBtn"></span>
-			<!-- <div id="qrcode"></div> -->
-			<img class="code-img" id="J_codeImg" src="http://imgcow.oss-cn-hangzhou.aliyuncs.com/game/caicai.png" />
-			<p class="code-text">兑换码：<button id="J_code" data-clipboard-text="">-</button></p>
-			<p class="code-tip">加微信，凭兑换码领取现金红包</p>
-		</div>
-	</div>
-<script type="text/javascript" src="common.js"></script><script type="text/javascript" src="app.js"></script></body>
+  <div class="bgBox">
+<!-- 弹层 -->
+  <div class="outLayer" id = 'outLayer' style = 'display:none'></div>
+<!-- 顶部积分 -->
+    <div class="floatTitle">
+      <div class="floatTitleLeft">
+        奖品：
+        <div class = 'topgoodsIcon' id = 'topgoodsIcon'>
+          <span class = 'goodsIconNum' id = 'goodsIconNum'>0</span>
+        </div>
+      </div>
+      <div class="floatTitleRight">
+        <span class="floatTitleRightCount">积分:</span>
+        <span class = 'floatTitleRightAllCount'>6088</span>
+        <span class = 'floatTitleRightWord'>兑换
+            <span class="dayuIcon">
+              <svg t="1493101812788" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2366" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32">
+                <defs><style type="text/css"></style></defs>
+                <path d="M313.616 1008.348l463.113-463.67c8.399-8.4 13.593-20.006 13.593-32.824s-5.195-24.423-13.593-32.824l-464.274-464.831c-8.456-8.758-20.301-14.197-33.417-14.197-25.641 0-46.427 20.786-46.427 46.427 0 13.091 5.419 24.919 14.137 33.359l464.287 464.889v-65.648l-463.113 463.717c-8.731 8.452-14.15 20.279-14.15 33.37 0 25.641 20.786 46.427 46.427 46.427 13.115 0 24.961-5.438 33.404-14.183z" fill="#ffffff" p-id="2367"></path>
+              </svg>
+            </span>
+        </span>
+      </div>
+    </div>
+    <div class="mainGameBox">
+      <div class="wrap" style = 'display:none;'>
+        <div class="back"><h1 id="back">重新开始</h1></div>
+        <div class="content">
+            <div class="top clearfix">
+              <!-- <p class="fl">倒计时:<span id="sec">30.00</span>s</p> -->
+              <!-- <p class="fr">第<span id="level">1</span>关</p> -->
+            </div>
+
+        </div>
+      </div>
+      <div class="secBox">
+        <span id="sec"></span>
+      </div>
+      <div class="guanshuBox">
+        当前关数:
+        <span id="level">0</span>
+      </div>
+      <div class="mid">
+        <div id="oul">
+          <ul class = 'posterUl'>
+            <li id = 'li1'><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+          </ul>
+          <ul class = 'posterUl'>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+          </ul>
+          <ul class = 'posterUl'>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+          </ul>
+          <ul class = 'posterUl'>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+            <li><img src="../app/imgs/square1.png" alt=""></li>
+          </ul>
+        </div>
+      </div>
+      <p id="start">开始游戏</p>
+    </div>
+    <div class="gameRule">
+      <div class="gameRuleTitle">
+        <div class = 'gameicon'>?</div>
+        <p>活动规则</p>
+      </div>
+      <div class="rules">
+        <p class ='ruleOne'><span class = 'numicon'>1</span>每参与一次游戏奖励5积分.可在游戏结束后查看累积积分并兑换现金红包.</p>
+        <p class ='ruleTwo'><span class = 'numicon'>2</span>100积分可以兑换现金红包1元.</p>
+      </div>
+    </div>
+  </div>
+  <div id="nativeShare"></div>
+<script type="text/javascript" src="common.js"></script></body>
 </html>
+<script>
+    // $(document).ready(function () {
+    //   var mySwiper = new Swiper('.swiper-container',{
+    //     effect : 'coverflow',
+    //     slidesPerView: 3,
+    //     watchSlidesProgress : true,
+    //     centeredSlides: true,
+    //     pagination : '.swiper-pagination',
+    //     coverflow: {
+    //                 rotate: 30,
+    //                 stretch: 10,
+    //                 depth: 60,
+    //                 modifier: 2,
+    //                 slideShadows : true
+    //             }
+    //     })
+    // });
+    // 原生分享功能的配置
+    var config = {
+        url:'http://youstde.github.io',
+        title:'songtao的个人博客',
+        desc:'songtao的个人博客',
+        img:'http://www.wangjunfeng.com/img/face.jpg',
+        img_title:'王俊锋的个人博客',
+        from:'王俊锋的博客'
+    };
+    var share_obj = new nativeShare('nativeShare',config);
+</script>
